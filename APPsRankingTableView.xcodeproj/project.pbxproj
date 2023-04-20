@@ -9,21 +9,30 @@
 /* Begin PBXBuildFile section */
 		BCDCBC1429EE67B7002B88A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCBC1329EE67B7002B88A9 /* AppDelegate.swift */; };
 		BCDCBC1629EE67B7002B88A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCBC1529EE67B7002B88A9 /* SceneDelegate.swift */; };
-		BCDCBC1829EE67B7002B88A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCBC1729EE67B7002B88A9 /* ViewController.swift */; };
 		BCDCBC1B29EE67B7002B88A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCDCBC1929EE67B7002B88A9 /* Main.storyboard */; };
 		BCDCBC1D29EE67B9002B88A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCDCBC1C29EE67B9002B88A9 /* Assets.xcassets */; };
 		BCDCBC2029EE67B9002B88A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCDCBC1E29EE67B9002B88A9 /* LaunchScreen.storyboard */; };
+		BCDCBC2829EE67F5002B88A9 /* FeedApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCBC2729EE67F5002B88A9 /* FeedApps.swift */; };
+		BCDCBC2A29EE6820002B88A9 /* AppsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCBC2929EE6820002B88A9 /* AppsTableViewController.swift */; };
+		BCDCBC2C29EE684C002B88A9 /* AppDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCBC2B29EE684C002B88A9 /* AppDetailViewController.swift */; };
+		BCDCBC2F29EE81F6002B88A9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BCDCBC2E29EE81F6002B88A9 /* Kingfisher */; };
+		BCDCBC3129EE868F002B88A9 /* CustomerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCBC3029EE868F002B88A9 /* CustomerTableViewCell.swift */; };
+		BCDCBC3329EFD8C4002B88A9 /* FeedSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDCBC3229EFD8C4002B88A9 /* FeedSearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BCDCBC1029EE67B7002B88A9 /* APPsRankingTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APPsRankingTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCDCBC1329EE67B7002B88A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCDCBC1529EE67B7002B88A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BCDCBC1729EE67B7002B88A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BCDCBC1A29EE67B7002B88A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BCDCBC1C29EE67B9002B88A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCDCBC1F29EE67B9002B88A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BCDCBC2129EE67B9002B88A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCDCBC2729EE67F5002B88A9 /* FeedApps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedApps.swift; sourceTree = "<group>"; };
+		BCDCBC2929EE6820002B88A9 /* AppsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsTableViewController.swift; sourceTree = "<group>"; };
+		BCDCBC2B29EE684C002B88A9 /* AppDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailViewController.swift; sourceTree = "<group>"; };
+		BCDCBC3029EE868F002B88A9 /* CustomerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTableViewCell.swift; sourceTree = "<group>"; };
+		BCDCBC3229EFD8C4002B88A9 /* FeedSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCDCBC2F29EE81F6002B88A9 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,8 +68,12 @@
 			children = (
 				BCDCBC1329EE67B7002B88A9 /* AppDelegate.swift */,
 				BCDCBC1529EE67B7002B88A9 /* SceneDelegate.swift */,
-				BCDCBC1729EE67B7002B88A9 /* ViewController.swift */,
+				BCDCBC2729EE67F5002B88A9 /* FeedApps.swift */,
+				BCDCBC2929EE6820002B88A9 /* AppsTableViewController.swift */,
+				BCDCBC2B29EE684C002B88A9 /* AppDetailViewController.swift */,
 				BCDCBC1929EE67B7002B88A9 /* Main.storyboard */,
+				BCDCBC3229EFD8C4002B88A9 /* FeedSearchViewController.swift */,
+				BCDCBC3029EE868F002B88A9 /* CustomerTableViewCell.swift */,
 				BCDCBC1C29EE67B9002B88A9 /* Assets.xcassets */,
 				BCDCBC1E29EE67B9002B88A9 /* LaunchScreen.storyboard */,
 				BCDCBC2129EE67B9002B88A9 /* Info.plist */,
@@ -83,6 +97,9 @@
 			dependencies = (
 			);
 			name = APPsRankingTableView;
+			packageProductDependencies = (
+				BCDCBC2E29EE81F6002B88A9 /* Kingfisher */,
+			);
 			productName = APPsRankingTableView;
 			productReference = BCDCBC1029EE67B7002B88A9 /* APPsRankingTableView.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +128,9 @@
 				Base,
 			);
 			mainGroup = BCDCBC0729EE67B7002B88A9;
+			packageReferences = (
+				BCDCBC2D29EE81F6002B88A9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = BCDCBC1129EE67B7002B88A9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +158,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCDCBC1829EE67B7002B88A9 /* ViewController.swift in Sources */,
+				BCDCBC3329EFD8C4002B88A9 /* FeedSearchViewController.swift in Sources */,
+				BCDCBC2A29EE6820002B88A9 /* AppsTableViewController.swift in Sources */,
+				BCDCBC2829EE67F5002B88A9 /* FeedApps.swift in Sources */,
+				BCDCBC2C29EE684C002B88A9 /* AppDetailViewController.swift in Sources */,
 				BCDCBC1429EE67B7002B88A9 /* AppDelegate.swift in Sources */,
 				BCDCBC1629EE67B7002B88A9 /* SceneDelegate.swift in Sources */,
+				BCDCBC3129EE868F002B88A9 /* CustomerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +382,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BCDCBC2D29EE81F6002B88A9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BCDCBC2E29EE81F6002B88A9 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCDCBC2D29EE81F6002B88A9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BCDCBC0829EE67B7002B88A9 /* Project object */;
 }
