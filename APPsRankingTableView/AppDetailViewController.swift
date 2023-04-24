@@ -28,7 +28,6 @@ class AppDetailViewController: UIViewController {
         let webURLString = results.url
         appWebView.load(URLRequest(url: URL(string: webURLString)!))
         
-        // Do any additional setup after loading the view.
     }
     
 

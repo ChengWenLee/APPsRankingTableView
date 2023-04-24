@@ -15,53 +15,24 @@ class AppsTableViewController: UITableViewController {
     var feedURL: String = ""
     var feedURLString: String!
     
-//    required init?(coder: NSCoder) {
-//        <#code#>
-//    }
-//
-//    init?(coder: NSCoder, results: Results) {
-//        self.results = results
-//        super.init(coder: coder)
-//    }
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
             fetchItems()
         
-        
-        
-        // Setup the attributes of title
-//                let attributes = [
-//                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 30),
-//                    NSAttributedString.Key.foregroundColor: UIColor.systemYellow
-//                ]
-//                self.navigationController?.navigationBar.largeTitleTextAttributes = nil
-//                self.navigationController?.navigationBar.titleTextAttributes = attributes
-//                title = feedTitle
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    // MARK: - Table view data source
 
     func fetchItems() {
-        
+        // decode the JSON data from feedURLString
         let urlString = feedURLString!
-            //"https://rss.applemarketingtools.com/api/v2/us/apps/top-free/25/apps.json"
         if let url = URL(string: urlString){
             URLSession.shared.dataTask(with: url) { data, response, error in
+                // Using URLSeccion.shared.daataTask to "Get" data with URL
                 if let data {
-                    let decoder = JSONDecoder()
-                    do {
+                    let decoder = JSONDecoder() // Set decoder type to JSON
+                    do { // do decode process
                         let searchResponse = try decoder.decode(SearchResult.self, from: data)
                         self.items = searchResponse.feed.results
                         self.feedCountry = searchResponse.feed.country
@@ -74,13 +45,13 @@ class AppsTableViewController: UITableViewController {
                     }
                 }else{
                     // show error alert
-                }
+                    }
                 }.resume()
             }
-        
-    }
+        }
+    
     @IBSegueAction func showAppData(_ coder: NSCoder) -> AppDetailViewController? {
-        
+        // Transfer data to next page
         guard let row = tableView.indexPathForSelectedRow?.row else{
             return nil
         }
@@ -89,15 +60,14 @@ class AppsTableViewController: UITableViewController {
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return items.count
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Set row height of tableView Cell to 160 points
         return 160
     }
    
@@ -105,12 +75,12 @@ class AppsTableViewController: UITableViewController {
         // Set Identifier to the resued Indentifier of tableViewCell
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(CustomerTableViewCell.self)", for: indexPath) as! CustomerTableViewCell
         let item = items[indexPath.row]
-        
+        // Configure the cell content
         cell.appNameLabel.text = "Country: \(feedCountry) \n Name:\(item.name)"
-        cell.appKindLabel.text = "Kind: \(item.kind) \n Release Date: \(item.releaseDate)"
+        cell.appKindLabel.text = "Kind: \(item.kind) \n Release Date: \(item.releaseDate ?? "NA")"
         cell.appImageView.contentMode = .scaleAspectFit
         cell.appImageView.kf.setImage(with: item.artworkUrl100)
-        // Configure the cell...
+        // Set Navigation controller title as "feedTitle"
         title = feedTitle
         
         return cell

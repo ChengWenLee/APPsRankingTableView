@@ -9,7 +9,7 @@ import UIKit
 
 class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    
+    // Outlets for UI elements
     @IBOutlet weak var showURLLabel: UILabel!
     @IBOutlet weak var mediaTypePicker: UIPickerView!
     @IBOutlet weak var storefrontPicker: UIPickerView!
@@ -17,6 +17,7 @@ class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var feedTypePicker: UIPickerView!
     @IBOutlet weak var showURLButton: UIButton!
     
+    // Variables to store selected options and data
     var feedURLString: String = ""
     var currentTypes = [String]()
     var currentTypeCodes = [String]()
@@ -27,8 +28,9 @@ class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var currentTypeCode: String?
     var currentFeedCode: String?
     
+    // Data array for picker view options
     let mediaOptions = ["Music", "Podcasts", "Apps", "Books"]
-    let mediaURLs = ["music", "podcasts", "apps", "books"]
+    let mediaCodes = ["music", "podcasts", "apps", "books"]
     let storeOptions = ["United States", "United Kingdom", "Taiwan", "Spain", "Japan", "Italy", "Greece", "Germany", "France", "Canada", "Australia"]
     let storeCodes = ["us", "gb", "tw", "es", "jp", "it", "gr", "de", "fr", "ca", "au"]
     let musicTypes = ["Albums","Music Videos","Songs"]
@@ -47,6 +49,7 @@ class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPicker
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set delegate and data source for picker views
         mediaTypePicker.delegate = self
         mediaTypePicker.dataSource = self
         storefrontPicker.delegate = self
@@ -56,9 +59,12 @@ class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPicker
         feedTypePicker.delegate = self
         feedTypePicker.dataSource = self
         feedTypePicker.isHidden = true
+        
+        // Set initial values and hide/show UI elements
         currentTypes = musicTypes
+        currentTypeCodes = musicTypeCodes
         currentFeedCodes = musicFeedCodes
-        currentMedia = mediaURLs[0]
+        currentMedia = mediaCodes[0]
         currentStore = storeCodes[0]
         currentTypeCode = musicTypeCodes[0]
         currentFeedCode = musicFeedCodes[0]
@@ -66,15 +72,18 @@ class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPicker
         showURLLabel.isHidden = true
         showURLButton.isHidden = true
         
-        // Do any additional setup after loading the view.
     }
     
+    
+    // Update current types and feed codes base on selected media type
     func updateCurrentTypes() {
+        // Using switch to set different type codes and feed codes
             switch mediaOptions[mediaTypePicker.selectedRow(inComponent: 0)] {
             case "Music":
                 currentTypes = musicTypes
                 currentTypeCodes = musicTypeCodes
                 currentFeedCode = musicFeedCodes[0]
+                // No need to show feed type of Music media and hide the feedTypePicker
                 feedTypePicker.isHidden = true
             case "Podcasts":
                 currentTypes = podcastsTypes
@@ -84,12 +93,15 @@ class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPicker
                 case "Podcasts":
                     currentFeedCodes = podcastFeedCodes
                 case "Podcast Episodes":
+                    // Set feed type of "Podcast Episodes" to only "top"
                     currentFeedCodes = [podcastFeedCodes[0]]
                     currentFeedCode = podcastFeedCodes[0]
                 case "Podcast Channels":
+                    // Set feed type of "Podcast Episodes" to only "top-subscriber"
                     currentFeedCodes = [podcastFeedCodes[1]]
                     currentFeedCode = podcastFeedCodes[1]
                 default:
+                    // Set default feed type code to "top"
                     currentFeedCodes = podcastFeedCodes
                     currentFeedCode = podcastFeedCodes[0]
                 }
@@ -106,10 +118,10 @@ class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPicker
             default:
                 break
             }
-            typePicker.reloadAllComponents()
-        feedTypePicker.reloadAllComponents()
-        currentType = currentTypes.first
-        currentTypeCode = currentTypeCodes.first
+            typePicker.reloadAllComponents() //reload typePicker View
+        feedTypePicker.reloadAllComponents() //reload feedTypePicker View
+        currentType = currentTypes.first // Set currentType to the 1st element of currentTypes array
+        currentTypeCode = currentTypeCodes.first // Set currentType to the 1st element of currentTypeCodes array
         }
     
     
@@ -117,8 +129,9 @@ class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPicker
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1  //Set the list number of PickerView
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        //Set the row numbers of each PickerView
         if pickerView == mediaTypePicker {
             return mediaOptions.count
         }else if pickerView == storefrontPicker{
@@ -146,19 +159,20 @@ class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // Using switch to set the action when the pickerView row selected
         switch pickerView{
         case mediaTypePicker:
-            currentMedia = mediaURLs[row]
-            updateCurrentTypes()
-            updateCurrentFeedCode()
+            currentMedia = mediaCodes[row] // Set currentMedia to the selected "Media"
+            updateCurrentTypes() // Set type to music types
+            updateCurrentFeedCode() // Set feed type to music feed type
         case storefrontPicker:
-            currentStore = storeCodes[row]
+            currentStore = storeCodes[row] // Set currentStore to the selected "Store"
         case typePicker:
-            currentType = currentTypes[row]
-            currentTypeCode = currentTypeCodes[row]
-            updateCurrentFeedCode()
+            currentType = currentTypes[row] // Set currentType to the selected "Type"
+            currentTypeCode = currentTypeCodes[row] // Set currentTypeCode to the slected type
+            updateCurrentFeedCode() // Set feed types base on selected type
         case feedTypePicker:
-            currentFeedCode = currentFeedCodes[row]
+            currentFeedCode = currentFeedCodes[row] // Set currentFeedCode to the selected feed type
         default:
             break
         }
@@ -166,6 +180,7 @@ class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func updateCurrentFeedCode(){
+        // reflash and set feedPickerView
         if currentMedia == "music"{
             currentFeedCode = musicFeedCodes[0]
         }else if currentMedia == "apps"{
@@ -173,7 +188,7 @@ class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPicker
         }else if currentMedia == "books"{
             currentFeedCode = appsFeedCodes[0]
         }else{
-            
+            // if media type is "Podcasts" and the then using switch to set different "Type" of "Podcasts"
             switch podcastsTypes[typePicker.selectedRow(inComponent: 0)]{
             case "Podcasts":
                 currentFeedCodes = podcastFeedCodes
@@ -193,21 +208,21 @@ class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
         
     @IBSegueAction func showSearchURL(_ coder: NSCoder) -> AppsTableViewController? {
-        
+        // Using IBSegueAction to set the transfer data to next page
         let controller = AppsTableViewController(coder: coder)
         var searchResult = ""
         if let media = currentMedia, let store = currentStore, let type = currentTypeCode, let feedCode = currentFeedCode{
             searchResult = "https://rss.applemarketingtools.com/api/v2/\(store)/\(media)/\(feedCode)/10/\(type).json"
+            // Feed search URL format: https://rss.applemarketingtools.com/api/v2/+"storeCode"+/+"mediaCode"+/+"feedCode"+/+"10" or "25"+/+"typeCode"+.json
         }
-        feedURLString = searchResult
-        controller?.feedURLString = feedURLString
+        controller?.feedURLString = searchResult
         return controller
     }
     
     
     
     @IBAction func showSearchResultLabel(_ sender: Any) {
-        
+        // Debug test: check the generated URL string
         var searchResult = ""
         if let media = currentMedia, let store = currentStore, let type = currentTypeCode, let feedCode = currentFeedCode{
             searchResult = "https://rss.applemarketingtools.com/api/v2/\(store)/\(media)/\(feedCode)/10/\(type).json"
@@ -219,16 +234,18 @@ class FeedSearchViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
     }
     
- //   var feedURL = "https://rss.applemarketingtools.com/api/v2/us/apps/top-free/10/apps.json"
+//    ChatGPT: 這個程式簡單易懂，功能也很明確。以下是一些評分和建議：
+//
+//    評分：
+//
+//    功能完成度：4/5
+//    程式碼品質：3/5
+//    可讀性：4/5
+//    建議：
+//    在程式碼上更加注重命名規範和一致性，例如使用較具描述性的名稱來命名變數和函數。
+//    可以更好地組織代碼，例如將對應的代碼放在一起，減少重複的代碼，並且將功能相似的代碼抽象成更通用的函數。
+//    在使用 switch 語句時，可以考慮使用列舉類型，這樣更容易管理代碼和避免出現拼錯字的情況。
+//    在註釋上注明代碼的意圖，更好地幫助其他人理解和閱讀代碼
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
